@@ -219,21 +219,16 @@ namespace AssemblyViewerV2
         {
             if (Form_DetailInfo.Mode == "Add" || Form_DetailInfo.Mode == "Edit")
             {
-                // Создаем диалог выбора файла
                 OpenFileDialog openFileDialog = new OpenFileDialog();
 
-                // Устанавливаем фильтры для отображения только изображений
                 openFileDialog.Filter = "Изображения|*.jpg;*.jpeg;*.png;*.bmp;*.gif|Все файлы|*.*";
 
-                // Открываем диалог выбора файла
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        // Получаем путь к выбранному файлу
                         string filePath = openFileDialog.FileName;
 
-                        // Загружаем изображение в PictureBox
                         PictureBox pictureBox = sender as PictureBox;
                         pictureBox.Image = Image.FromFile(filePath);
                         isPhotoSet = true;

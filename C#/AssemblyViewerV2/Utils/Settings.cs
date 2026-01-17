@@ -28,11 +28,9 @@ namespace AssemblyViewerV2
             public string OpenAI_APIKey { get; set; } = "sk_EAMqBTaWynI2c60DzyrRzVaY9gs7VyOx";
         }
 
-        // Экземпляры настроек — теперь оба присутствуют
         public DataBase DB { get; set; } = new DataBase();
-        public OpenAISettings OpenAI { get; set; } = new OpenAISettings(); // ← вот это было упущено
+        public OpenAISettings OpenAI { get; set; } = new OpenAISettings();
 
-        // Загрузка или создание файла
         public static Settings LoadOrCreate()
         {
             if (!File.Exists(SettingsFilePath))
@@ -49,7 +47,6 @@ namespace AssemblyViewerV2
             }
             catch (Exception)
             {
-                // Если файл повреждён — создаём заново
                 var settings = new Settings();
                 settings.Save();
                 return settings;

@@ -84,7 +84,6 @@ namespace AssemblyViewerV2
 
                 try
                 {
-                    // Фильтруем колонки
                     var columnsToExport = TableSQL_BOM.Columns.Cast<DataGridViewColumn>()
                         .Where(col => col.Name != "Photo" && col.Name != "ID_Assembly" && col.Name != "ID")
                         .ToList();
@@ -94,13 +93,11 @@ namespace AssemblyViewerV2
                     workbook = excelApp.Workbooks.Add();
                     worksheet = (Excel.Worksheet)workbook.ActiveSheet;
 
-                    // Заголовки
                     for (int i = 0; i < columnsToExport.Count; i++)
                     {
                         worksheet.Cells[1, i + 1] = columnsToExport[i].HeaderText;
                     }
 
-                    // Данные
                     for (int rowIndex = 0; rowIndex < TableSQL_BOM.RowCount - 1; rowIndex++)
                     {
                         for (int colIndex = 0; colIndex < columnsToExport.Count; colIndex++)

@@ -44,14 +44,12 @@ namespace AssemblyViewerV2
         {
             try
             {
-                // === Проверка порта ===
                 if (!int.TryParse(TextBox_SQLPort.Text, out int port) || port <= 0 || port > 65535)
                 {
                     MessageBox.Show("Порт должен быть целым числом в диапазоне от 1 до 65535.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // === Проверка URL ===
                 string urlInput = TextBox_OpenAI_URL.Text.Trim();
                 if (string.IsNullOrWhiteSpace(urlInput))
                 {
@@ -65,19 +63,16 @@ namespace AssemblyViewerV2
                     return;
                 }
 
-                // === Обновляем настройки БД ===
                 Program.AppSettings.DB.Host = TextBox_SQLHost.Text;
-                Program.AppSettings.DB.Port = port; // уже проверено
+                Program.AppSettings.DB.Port = port;
                 Program.AppSettings.DB.Database = TextBox_SQLDatabase.Text;
                 Program.AppSettings.DB.Username = TextBox_SQLUsername.Text;
                 Program.AppSettings.DB.Password = TextBox_SQLPassword.Text;
 
-                // === Обновляем настройки OpenAI ===
                 Program.AppSettings.OpenAI.OpenAI_URL = urlInput;
                 Program.AppSettings.OpenAI.OpenAI_Model = TextBox_OpenAI_Model.Text;
                 Program.AppSettings.OpenAI.OpenAI_APIKey = TextBox_OpenAI_APIKey.Text;
 
-                // === Сохраняем в файл ===
                 Program.AppSettings.Save();
 
                 MessageBox.Show("Настройки успешно сохранены!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -98,26 +93,23 @@ namespace AssemblyViewerV2
         {
             try
             {
-                // Берём данные из текстовых полей (или можно из Program.AppSettings.DB — см. примечание ниже)
                 string host = TextBox_SQLHost.Text.Trim();
                 string portText = TextBox_SQLPort.Text.Trim();
                 string database = TextBox_SQLDatabase.Text.Trim();
                 string username = TextBox_SQLUsername.Text.Trim();
                 string password = TextBox_SQLPassword.Text;
 
-                // Валидация порта
                 if (!int.TryParse(portText, out int port) || port <= 0 || port > 65535)
                 {
                     MessageBox.Show("Некорректный порт.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Формируем строку подключения
                 var connString = $"Host={host};Port={port};Database={database};Username={username};Password={password};Timeout=5;CommandTimeout=5";
 
                 using (var connection = new NpgsqlConnection(connString))
                 {
-                    connection.Open(); // Пытаемся подключиться
+                    connection.Open();
                     MessageBox.Show("Подключение к базе данных успешно!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

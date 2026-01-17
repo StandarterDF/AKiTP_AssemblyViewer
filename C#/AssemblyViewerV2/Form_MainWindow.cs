@@ -9,13 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-// Стандартные using (без дублей)
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Windows.Forms;
-
-// Псевдонимы для Open XML — КЛЮЧЕВОЙ МОМЕНТ!
 using Wp = DocumentFormat.OpenXml.Wordprocessing;
 using Dml = DocumentFormat.OpenXml.Drawing;
 using DW = DocumentFormat.OpenXml.Drawing.Wordprocessing;
@@ -44,7 +37,6 @@ namespace AssemblyViewerV2
 
         private void ProgramMainForm_Load(object sender, EventArgs e)
         {
-            // Создание списка для ComboBox
             var assemblyList = new List<AssemblyItem>();
             foreach (Utils.Types.Assemblies Assembly in Utils.SQLUtils.GetAssemblies())
             {
@@ -56,7 +48,6 @@ namespace AssemblyViewerV2
                 );
             }
 
-            // Настройка ComboBox
             ComboBox_SelectAssembly.DisplayMember = "DisplayText";
             ComboBox_SelectAssembly.ValueMember = "ID";
             ComboBox_SelectAssembly.DataSource = assemblyList;
@@ -121,8 +112,6 @@ namespace AssemblyViewerV2
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 RowSelected_DetailID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value);
-                // Теперь можно работать с выбранной строкой
-                // MessageBox.Show("Выбранная строка: " + RowSelected_DetailID);
             }
             else
             {
@@ -208,10 +197,8 @@ namespace AssemblyViewerV2
 
                     using (var package = new OfficeOpenXml.ExcelPackage())
                     {
-                        // === Лист "Сборка" ===
                         var assemblyWorksheet = package.Workbook.Worksheets.Add("Сборка");
 
-                        // Заголовки
                         assemblyWorksheet.Cells[1, 1].Value = "ID";
                         assemblyWorksheet.Cells[1, 2].Value = "Название";
                         assemblyWorksheet.Cells[1, 3].Value = "Автор";
@@ -222,7 +209,6 @@ namespace AssemblyViewerV2
                         assemblyWorksheet.Cells[1, 8].Value = "Информация";
                         assemblyWorksheet.Cells[1, 9].Value = "Фото (base64)";
 
-                        // Данные сборки
                         if (assembly != null)
                         {
                             assemblyWorksheet.Cells[2, 1].Value = assembly.ID;
@@ -245,7 +231,6 @@ namespace AssemblyViewerV2
 
                         assemblyWorksheet.Cells.AutoFitColumns();
 
-                        // === Лист "Детали" === (БЕЗ ID)
                         var partsWorksheet = package.Workbook.Worksheets.Add("Детали");
 
                         partsWorksheet.Cells[1, 1].Value = "ID_Сборки";
@@ -323,7 +308,6 @@ namespace AssemblyViewerV2
 
                 using (var package = new OfficeOpenXml.ExcelPackage(new FileInfo(openDialog.FileName)))
                 {
-                    // === Проверка наличия нужных листов ===
                     if (!package.Workbook.Worksheets.Any(ws => ws.Name == "Сборка") ||
                         !package.Workbook.Worksheets.Any(ws => ws.Name == "Детали"))
                     {
@@ -370,7 +354,6 @@ namespace AssemblyViewerV2
                         assembly.Photo = Array.Empty<byte>();
                     }
 
-                    // === Проверка на дубликат по Name + Version ===
                     bool assemblyExists = SQLUtils.GetAssemblies()
                         .Any(a => a.Name == assembly.Name && a.Version == assembly.Version);
 
@@ -385,12 +368,11 @@ namespace AssemblyViewerV2
 
                         if (result != DialogResult.Yes)
                         {
-                            return; // Отмена импорта
+                            return; 
                         }
-                        // Если "Да" — продолжаем импорт как новой записи (ID=0, InsertAssembly сам присвоит новый ID)
+     
                     }
 
-                    // === Вставка новой сборки ===
                     if (!SQLUtils.InsertAssembly(assembly))
                     {
                         MessageBox.Show("Не удалось сохранить сборку в базу данных.", "Ошибка",
@@ -398,7 +380,6 @@ namespace AssemblyViewerV2
                         return;
                     }
 
-                    // === Чтение деталей ===
                     var parts = new List<Types.Parts>();
 
                     if (partsWorksheet.Dimension != null && partsWorksheet.Dimension.Rows >= 2)
@@ -407,7 +388,7 @@ namespace AssemblyViewerV2
                         {
                             var part = new Types.Parts
                             {
-                                ID_Assembly = assembly.ID, // <-- уже обновлён после InsertAssembly!
+                                ID_Assembly = assembly.ID,
                                 PartNumber = partsWorksheet.Cells[row, 2]?.Text ?? string.Empty,
                                 Name = partsWorksheet.Cells[row, 3]?.Text ?? string.Empty,
                                 Information = partsWorksheet.Cells[row, 4]?.Text ?? string.Empty,
@@ -443,7 +424,6 @@ namespace AssemblyViewerV2
                         }
                     }
 
-                    // === Вставка деталей ===
                     bool allPartsInserted = true;
                     foreach (var part in parts)
                     {
@@ -454,21 +434,16 @@ namespace AssemblyViewerV2
                         }
                     }
 
-                    // === Обновление ComboBox ===
-                    // Получаем текущий список
                     var currentList = (List<AssemblyItem>)ComboBox_SelectAssembly.DataSource;
 
-                    // Создаём обновлённый список
                     var updatedList = new List<AssemblyItem>(currentList)
                     {
                         new AssemblyItem { Assembly = assembly }
                     };
 
-                    // Присваиваем НОВЫЙ список — этого достаточно для обновления
                     ComboBox_SelectAssembly.DataSource = updatedList;
                     ComboBox_SelectAssembly.SelectedIndex = updatedList.Count - 1;
 
-                    // === Сообщение пользователю ===
                     if (!allPartsInserted)
                     {
                         MessageBox.Show("Сборка добавлена, но не все детали были успешно сохранены.", "Частичный успех",
@@ -515,7 +490,6 @@ namespace AssemblyViewerV2
                         mainPart.Document = new DocumentFormat.OpenXml.Wordprocessing.Document();
                         var body = mainPart.Document.AppendChild(new DocumentFormat.OpenXml.Wordprocessing.Body());
 
-                        // Вспомогательная функция для создания абзаца с увеличенным шрифтом
                         DocumentFormat.OpenXml.Wordprocessing.Paragraph CreateParagraph(string text, bool bold = false, int fontSizeHalfPoints = 28)
                         {
                             var runProps = new DocumentFormat.OpenXml.Wordprocessing.RunProperties();
@@ -526,7 +500,6 @@ namespace AssemblyViewerV2
                                 new DocumentFormat.OpenXml.Wordprocessing.Run(runProps, new DocumentFormat.OpenXml.Wordprocessing.Text(text)));
                         }
 
-                        // === Сборка ===
                         body.Append(CreateParagraph("Сборка", bold: true, fontSizeHalfPoints: 36));
 
                         if (assembly.Photo != null && assembly.Photo.Length > 0)
@@ -589,12 +562,10 @@ namespace AssemblyViewerV2
                             body.Append(CreateParagraph(field, fontSizeHalfPoints: 28));
                         }
 
-                        // Разрыв страницы
                         body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(
                             new DocumentFormat.OpenXml.Wordprocessing.Run(
                                 new DocumentFormat.OpenXml.Wordprocessing.Break() { Type = DocumentFormat.OpenXml.Wordprocessing.BreakValues.Page })));
 
-                        // === Детали по одной на страницу ===
                         for (int i = 0; i < parts.Count; i++)
                         {
                             var part = parts[i];
@@ -674,23 +645,19 @@ namespace AssemblyViewerV2
                             }
                         }
 
-                        // === НОВАЯ СТРАНИЦА: Сводная таблица с умным распределением ширины колонок ===
                         body.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(
                             new DocumentFormat.OpenXml.Wordprocessing.Run(
                                 new DocumentFormat.OpenXml.Wordprocessing.Break() { Type = DocumentFormat.OpenXml.Wordprocessing.BreakValues.Page })));
 
                         body.Append(CreateParagraph("Сводная таблица деталей", bold: true, fontSizeHalfPoints: 32));
 
-                        // Создаём таблицу на всю ширину
                         var table = new DocumentFormat.OpenXml.Wordprocessing.Table();
 
-                        // Свойства таблицы: автоширина + фиксированный макет
                         table.Append(new DocumentFormat.OpenXml.Wordprocessing.TableProperties(
                             new DocumentFormat.OpenXml.Wordprocessing.TableWidth() { Width = "5000", Type = DocumentFormat.OpenXml.Wordprocessing.TableWidthUnitValues.Pct },
                             new DocumentFormat.OpenXml.Wordprocessing.TableLayout() { Type = DocumentFormat.OpenXml.Wordprocessing.TableLayoutValues.Fixed }
                         ));
 
-                        // Заголовки с логическим распределением ширины
                         var headers = new[]
                         {
                     new { Text = "PartNumber", WidthPercent = "10" },
@@ -712,7 +679,6 @@ namespace AssemblyViewerV2
                             cell.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(
                                 new DocumentFormat.OpenXml.Wordprocessing.Run(runProps, new DocumentFormat.OpenXml.Wordprocessing.Text(hdr.Text))));
 
-                            // Устанавливаем ширину ячейки в процентах
                             cell.TableCellProperties = new DocumentFormat.OpenXml.Wordprocessing.TableCellProperties(
                                 new DocumentFormat.OpenXml.Wordprocessing.TableCellWidth()
                                 {
@@ -723,7 +689,6 @@ namespace AssemblyViewerV2
                         }
                         table.Append(headerRow);
 
-                        // Данные с тем же распределением ширины
                         foreach (var part in parts)
                         {
                             var row = new DocumentFormat.OpenXml.Wordprocessing.TableRow();
@@ -746,7 +711,6 @@ namespace AssemblyViewerV2
                                 cell.Append(new DocumentFormat.OpenXml.Wordprocessing.Paragraph(
                                     new DocumentFormat.OpenXml.Wordprocessing.Run(runProps, new DocumentFormat.OpenXml.Wordprocessing.Text(val.Value ?? ""))));
 
-                                // Устанавливаем ту же ширину, что и в заголовке
                                 cell.TableCellProperties = new DocumentFormat.OpenXml.Wordprocessing.TableCellProperties(
                                     new DocumentFormat.OpenXml.Wordprocessing.TableCellWidth()
                                     {

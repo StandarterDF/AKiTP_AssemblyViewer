@@ -296,7 +296,6 @@ namespace AssemblyViewerV2.Utils
             }
             catch (Exception ex)
             {
-                // Для отладки: Debug.WriteLine(ex.ToString());
                 return false;
             }
         }
@@ -371,7 +370,7 @@ namespace AssemblyViewerV2.Utils
 
                         connection.Open();
                         int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0; // true, если хотя бы одна строка удалена
+                        return rowsAffected > 0;
                     }
                 }
             }
@@ -594,7 +593,6 @@ namespace AssemblyViewerV2.Utils
                     {
                         try
                         {
-                            // Сначала удаляем все детали, связанные с этой сборкой
                             const string deletePartsQuery = @"
                         DELETE FROM ""Parts""
                         WHERE ""ID_Assembly"" = @ID";
@@ -605,7 +603,6 @@ namespace AssemblyViewerV2.Utils
                                 cmd.ExecuteNonQuery();
                             }
 
-                            // Затем удаляем саму сборку
                             const string deleteAssemblyQuery = @"
                         DELETE FROM ""Assemblies""
                         WHERE ""ID"" = @ID";
@@ -615,16 +612,14 @@ namespace AssemblyViewerV2.Utils
                                 cmd.Parameters.AddWithValue("@ID", assembly.ID);
                                 int rowsAffected = cmd.ExecuteNonQuery();
 
-                                // Фиксируем транзакцию
                                 transaction.Commit();
                                 return rowsAffected > 0;
                             }
                         }
                         catch
                         {
-                            // Откатываем транзакцию в случае ошибки
                             transaction.Rollback();
-                            throw; // Перебросим исключение
+                            throw;
                         }
                     }
                 }

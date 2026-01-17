@@ -55,21 +55,17 @@ namespace AssemblyViewerV2
             {
                 MessageBox.Show("Сборка успешно удалена!");
 
-                // === УДАЛЕНИЕ сборки из ComboBox ===
                 var currentList = (List<AssemblyItem>)ComboBox_Main.DataSource;
 
-                // Находим элемент, соответствующий удаляемой сборке
                 var itemToRemove = currentList.FirstOrDefault(item => item.Assembly.ID == Assembly.ID);
 
                 if (itemToRemove != null)
                 {
                     currentList.Remove(itemToRemove);
 
-                    // Пересоздаём список для обновления UI
                     var updatedList = new List<AssemblyItem>(currentList);
                     ComboBox_Main.DataSource = updatedList;
 
-                    // Опционально: сбросить выбор
                     if (updatedList.Count > 0)
                         ComboBox_Main.SelectedIndex = 0;
                     else

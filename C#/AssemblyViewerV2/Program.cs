@@ -20,7 +20,6 @@ namespace AssemblyViewerV2
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Загружаем или создаём настройки
             AppSettings = Settings.LoadOrCreate();
 
             Application.Run(new ProgramMainForm());
