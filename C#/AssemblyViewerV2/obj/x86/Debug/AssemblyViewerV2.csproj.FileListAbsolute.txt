@@ -1,0 +1,13 @@
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\bin\x86\Debug\AssemblyViewerV2.exe.config
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\bin\x86\Debug\AssemblyViewerV2.exe
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\bin\x86\Debug\AssemblyViewerV2.pdb
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.csproj.AssemblyReference.cache
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.Form_AssemblyInfo.resources
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.Form_DetailInfo.resources
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.ProgramMainForm.resources
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.Form_ProgramInfo.resources
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.Properties.Resources.resources
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.csproj.GenerateResource.cache
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.csproj.CoreCompileInputs.cache
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.exe
+E:\System_Files\Documents\University\АКиТП\Наработки\C#\AssemblyViewerV2\obj\x86\Debug\AssemblyViewerV2.pdb

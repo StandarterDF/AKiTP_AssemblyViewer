@@ -1,0 +1,14 @@
+{
+  "DB": {
+    "Host": "localhost",
+    "Port": 5432,
+    "Database": "AKITP_Univercity_Work",
+    "Username": "postgres",
+    "Password": "16689527"
+  },
+  "OpenAI": {
+    "OpenAI_URL": "https://gen.pollinations.ai/v1/chat/completions",
+    "OpenAI_Model": "gemini-fast",
+    "OpenAI_APIKey": "sk_EAMqBTaWynI2c60DzyrRzVaY9gs7VyOx"
+  }
+}

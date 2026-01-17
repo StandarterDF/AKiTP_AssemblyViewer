@@ -1,0 +1,57 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 YaBrowser/25.10.0.0 Safari/537.36" version="28.1.2">
+  <diagram name="Страница — 1" id="45k9MojWphyawpq_P8N2">
+    <mxGraphModel dx="950" dy="530" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="Xkkam49mRXIXJQ1HlXpW-1" target="Xkkam49mRXIXJQ1HlXpW-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-1" value="Сборка&lt;div&gt;-----------------------------&lt;/div&gt;&lt;div&gt;ID&lt;/div&gt;&lt;div&gt;Название&lt;/div&gt;&lt;div&gt;Автор&lt;/div&gt;&lt;div&gt;Версия&lt;/div&gt;&lt;div&gt;Дата создания&lt;/div&gt;&lt;div&gt;Количество деталей&lt;/div&gt;&lt;div&gt;Описание&lt;/div&gt;&lt;div&gt;Примечание&lt;/div&gt;&lt;div&gt;Устройство и работа&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="330" width="120" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Xkkam49mRXIXJQ1HlXpW-2" target="Xkkam49mRXIXJQ1HlXpW-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="Xkkam49mRXIXJQ1HlXpW-2" target="Xkkam49mRXIXJQ1HlXpW-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="710" />
+              <mxPoint x="240" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-2" value="Деталь (Абст.)&lt;div&gt;-----------------------------&lt;/div&gt;&lt;div&gt;ID&lt;/div&gt;&lt;div&gt;Название&lt;/div&gt;&lt;div&gt;Тип (Станд. \ Не станд.)&lt;/div&gt;&lt;div&gt;Количество&lt;/div&gt;&lt;div&gt;Конструктор&lt;/div&gt;&lt;div&gt;Кто проверил&lt;/div&gt;&lt;div&gt;Отдел&lt;/div&gt;&lt;div&gt;Материал&lt;/div&gt;&lt;div&gt;ГОСТ Исполнение&lt;/div&gt;&lt;div&gt;ID Сборки&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="520" width="120" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Xkkam49mRXIXJQ1HlXpW-3" target="Xkkam49mRXIXJQ1HlXpW-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-3" value="&lt;div&gt;Деталь (Ст. изд.)&lt;/div&gt;-----------------------------&lt;div&gt;Тип стандартного изделия&lt;/div&gt;&lt;div&gt;-----------------------------&lt;br&gt;&lt;div&gt;Аналогично абстрактной детали&lt;/div&gt;&lt;div&gt;-----------------------------&lt;/div&gt;&lt;div&gt;Конкретные параметры детали&lt;/div&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="520" width="120" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="Xkkam49mRXIXJQ1HlXpW-8" target="Xkkam49mRXIXJQ1HlXpW-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-8" value="&lt;div&gt;BOM для сборки&lt;/div&gt;-----------------------------&lt;div&gt;ID&lt;/div&gt;&lt;div&gt;PartNumber&lt;/div&gt;&lt;div&gt;Название&lt;/div&gt;&lt;div&gt;Количество&lt;/div&gt;&lt;div&gt;Ссылка на закупку&lt;/div&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="330" width="120" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=-0.009;entryY=0.356;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Xkkam49mRXIXJQ1HlXpW-1" target="Xkkam49mRXIXJQ1HlXpW-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-10" value="SELECT Сборки&lt;div&gt;(Все сборки)&lt;/div&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-12" value="SELECT BOM&lt;div&gt;(БОМ для конкретной сборки)&lt;/div&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-14" value="SELECT Состав всех деталей&amp;nbsp;&lt;div&gt;(Все детали конкретной сборки)&lt;/div&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Xkkam49mRXIXJQ1HlXpW-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.009;entryY=0.174;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="Xkkam49mRXIXJQ1HlXpW-14" target="Xkkam49mRXIXJQ1HlXpW-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
